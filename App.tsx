@@ -11,6 +11,7 @@ import type { PropsWithChildren } from 'react';
 
 import {
     Button,
+    Pressable,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -27,6 +28,7 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
 import Snake from './screens/Snake';
 
 type SectionProps = PropsWithChildren<{
@@ -62,54 +64,27 @@ function Section({ children, title }: SectionProps): JSX.Element {
 
 type RootStackParamList = {
     Home: undefined;
-    Profile: undefined;
+    Snake: undefined;
 };
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-function NativeDefault({ navigation }: Props): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-
+function Home({ navigation }: HomeProps) {
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <Button title='go to next page' onPress={() => navigation.navigate('Profile')}></Button>
-            <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle} >
-                <Header />
-                <View
-                    style={{
-                        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                    }}>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="See Your Changes">
-                        <ReloadInstructions />
-                    </Section>
-                    <Section title="Debug">
-                        <DebugInstructions />
-                    </Section>
-                    <Section title="Learn More">
-                        Read the docs to discover what to do next:
-                    </Section>
-                    <LearnMoreLinks />
-                </View>
-            </ScrollView>
+        <SafeAreaView>
+            <View>
+                <Text style={styles.HomeMessage}>Welcome to the multi-game application</Text>
+                <Pressable onPress={() => navigation.navigate('Snake')} style={({ pressed }) => [{backgroundColor: pressed ? 'rgb(150, 150, 255)' : 'rgb(210, 230, 255)'}, styles.HomeAccessGameWrapper]}>
+                    <Text style={styles.HomeAccessGame}>Click on this to access the snake game</Text>
+                </Pressable>
+            </View>
         </SafeAreaView>
     )
 }
 
-function NextPage() {
+type SnakeGameProps = NativeStackScreenProps<RootStackParamList, 'Snake'>
+
+function SnakeGame({ navigation }: SnakeGameProps) {
     return (
         <Snake />
     )
@@ -124,14 +99,32 @@ function App(): JSX.Element {
         // <Snake />
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name='Home' children={NativeDefault} />
-                <Stack.Screen name='Profile' children={NextPage} />
+                <Stack.Screen name='Home' children={Home} />
+                <Stack.Screen name='Snake' children={SnakeGame} />
             </Stack.Navigator>
         </NavigationContainer>
     );
 }
 
 const styles = StyleSheet.create({
+    HomeMessage: {
+        fontSize: 30,
+        fontFamily: 'san serif',
+        textAlign: 'center'
+    },
+    HomeAccessGameWrapper: {
+        marginTop: 24
+    },
+    HomeAccessGame: {
+        fontSize: 22,
+        maxWidth: 200,
+        fontFamily: 'san serif',
+        textAlign: 'center',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        // marginTop: 32,
+        // backgroundColor: 'rgb(210, 230, 255)'
+    },
     sectionContainer: {
         marginTop: 32,
         paddingHorizontal: 24,

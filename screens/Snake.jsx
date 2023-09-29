@@ -10,38 +10,39 @@ import Tail from '../components/Tail';
 
 const BoardSize = constants.GRID_SIZE * constants.CELL_SIZE
 
-const entities = {
-    food: {
-        position: [10, 10],
-        size: constants.CELL_SIZE,
-        color: "green",
-        renderer: <Food />
-    },
-
-    tail: {
-        size: constants.CELL_SIZE,
-        color: "grey",
-        elements: [],
-        renderer: <Tail />
-    },
-
-    head: {
-        position: [0, 0],
-        size: constants.CELL_SIZE,
-        updateFrequency: 20,
-        nextMove: 20,
-        color: "red",
-        xspeed: 0,
-        yspeed: 1,
-        renderer: <Head />
-    },
-}
 
 const systems = [GameLoop]
 
 export default function Snake() {
     const engine = useRef(null)
 
+    const entities = {
+        food: {
+            position: [10, 10],
+            size: constants.CELL_SIZE,
+            color: "green",
+            renderer: <Food />
+        },
+    
+        tail: {
+            size: constants.CELL_SIZE,
+            color: "grey",
+            elements: [],
+            renderer: <Tail />
+        },
+    
+        head: {
+            position: [0, 0],
+            size: constants.CELL_SIZE,
+            updateFrequency: 20,
+            nextMove: 20,
+            color: "red",
+            xspeed: 0,
+            yspeed: 1,
+            renderer: <Head />
+        },
+    }
+    
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: (e, gestureState) => true,
         onStartShouldSetPanResponderCapture: (e, gestureState) => true,

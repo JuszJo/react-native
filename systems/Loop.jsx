@@ -56,12 +56,14 @@ export default function GameLoop(entities, { events, dispatch }) {
             ...tail.elements
         ]
 
+        // console.log(tail.elements);
+
         tail.elements.pop()
 
         head.nextMove = head.updateFrequency
 
         head.position[0] += head.xspeed;
-        head.position[1] += head.yspeed;
+        head.position[1] += head.yspeed;    
 
         if(
             head.position[0] == food.position[0] &&
