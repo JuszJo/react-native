@@ -4,10 +4,13 @@
  *
  * @format
  */
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 
 import {
+    Button,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -56,7 +59,14 @@ function Section({ children, title }: SectionProps): JSX.Element {
     );
 }
 
-function NativeDefault(): JSX.Element {
+type RootStackParamList = {
+    Home: undefined;
+    Profile: undefined;
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+function NativeDefault({ navigation }: Props): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -65,6 +75,7 @@ function NativeDefault(): JSX.Element {
 
     return (
         <SafeAreaView style={backgroundStyle}>
+            <Button title='go to next page' onPress={() => navigation.navigate('Profile')}></Button>
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
@@ -97,17 +108,26 @@ function NativeDefault(): JSX.Element {
     )
 }
 
-// const Stack = createNativeStackNavigator()
+function NextPage() {
+    return (
+        <View>
+            <Text>Page 2</Text>
+        </View>
+    )
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 function App(): JSX.Element {
 
     return (
-        <NativeDefault />
-        // <NavigationContainer>
-        //     <Stack.Navigator>
-        //         <Stack.Screen name='default' children={NativeDefault} />
-        //     </Stack.Navigator>
-        // </NavigationContainer>
+        // <NativeDefault />
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name='Home' children={NativeDefault} />
+                <Stack.Screen name='Profile' children={NextPage} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 

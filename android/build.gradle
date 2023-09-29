@@ -13,12 +13,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-
-        gradle.projectsEvaluated {
-            task.withType(Delete) {
-                deleteIf { it.size > 1024 * 1024 * 1024 }
-            }
-        }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
