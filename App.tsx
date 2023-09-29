@@ -27,6 +27,7 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Snake from './screens/Snake';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -82,7 +83,7 @@ function NativeDefault({ navigation }: Props): JSX.Element {
             />
             <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}>
+                style={backgroundStyle} >
                 <Header />
                 <View
                     style={{
@@ -110,9 +111,7 @@ function NativeDefault({ navigation }: Props): JSX.Element {
 
 function NextPage() {
     return (
-        <View>
-            <Text>Page 2</Text>
-        </View>
+        <Snake />
     )
 }
 
@@ -122,6 +121,7 @@ function App(): JSX.Element {
 
     return (
         // <NativeDefault />
+        // <Snake />
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name='Home' children={NativeDefault} />
