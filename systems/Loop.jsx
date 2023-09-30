@@ -51,6 +51,8 @@ export default function GameLoop(entities, { events, dispatch }) {
     head.nextMove -= 1
 
     if(head.nextMove === 0) {
+        // tail.elements = [head.position[0], head.position[1]].concat(tail.elements)
+
         tail.elements = [
             [head.position[0], head.position[1]],
             ...tail.elements
@@ -69,10 +71,12 @@ export default function GameLoop(entities, { events, dispatch }) {
             head.position[0] == food.position[0] &&
             head.position[1] == food.position[1]
         ) {
+            // tail.elements = [head.position[0], head.position[1]].concat(tail.elements)
+
             tail.elements = [
                 [head.position[0], head.position[1]],
                 ...tail.elements
-            ]   
+            ]
             // console.log(tail.elements);
 
             food.position = [
