@@ -58,8 +58,6 @@ export default function GameLoop(entities, { events, dispatch }) {
             ...tail.elements
         ]
 
-        // console.log(tail.elements);
-
         tail.elements.pop()
 
         head.nextMove = head.updateFrequency
