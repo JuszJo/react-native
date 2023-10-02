@@ -50,7 +50,7 @@ export default function Snake() {
         onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
         onPanResponderGrant: (e, gestureState) => {
-            
+            console.log(gestureState);
         },
 
         onPanResponderMove: (e, gestureState) => {
