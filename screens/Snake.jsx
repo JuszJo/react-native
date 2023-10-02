@@ -34,8 +34,8 @@ export default function Snake() {
         head: {
             position: [0, 0],
             size: constants.CELL_SIZE,
-            updateFrequency: 20,
-            nextMove: 20,
+            updateFrequency: 1,
+            nextMove: 1,
             color: "red",
             xspeed: 0,
             yspeed: 1,
