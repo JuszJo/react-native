@@ -78,7 +78,7 @@ export default function Snake() {
         },
 
         onPanResponderRelease: (e, gestureState) => {
-
+            console.log(gestureState);
         }
     })
     
