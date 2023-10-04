@@ -49,8 +49,8 @@ export default function Snake() {
         onMoveShouldSetPanResponder: (evt, gestureState) => true,
         onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
-        onPanResponderGrant: (e, gestureState) => {
-        },
+        // onPanResponderGrant: (e, gestureState) => {
+        // },
 
         onPanResponderMove: (e, gestureState) => {
             const movementState = {}

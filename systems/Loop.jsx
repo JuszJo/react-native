@@ -14,8 +14,7 @@ export default function GameLoop(entities, { events, dispatch }) {
 
             switch(moveEvent) {
                 case "MOVE_RIGHT":
-                    // if(head.xspeed == 1) return
-                    // console.log("omo");
+                    if(head.xspeed == 1) continue
 
                     head.xspeed = 1
                     head.yspeed = 0
@@ -23,7 +22,7 @@ export default function GameLoop(entities, { events, dispatch }) {
                     break;
                     
                 case "MOVE_LEFT":
-                    // if(head.xspeed == -1) return
+                    if(head.xspeed == -1) continue
 
                     head.xspeed = -1
                     head.yspeed = 0
@@ -31,7 +30,7 @@ export default function GameLoop(entities, { events, dispatch }) {
                 break;
 
                 case "MOVE_UP":
-                    // if(head.yspeed == -1) return
+                    if(head.yspeed == -1) continue
 
                     head.xspeed = 0
                     head.yspeed = -1
@@ -39,7 +38,7 @@ export default function GameLoop(entities, { events, dispatch }) {
                 break;
 
                 case "MOVE_DOWN":
-                    // if(head.yspeed == 1) return
+                    if(head.yspeed == 1) continue
 
                     head.xspeed = 0
                     head.yspeed = 1
@@ -57,10 +56,12 @@ export default function GameLoop(entities, { events, dispatch }) {
     if(head.nextMove === 0) {
         // tail.elements = [head.position[0], head.position[1]].concat(tail.elements)
 
-        tail.elements = [
-            [head.position[0], head.position[1]],
-            ...tail.elements
-        ]
+        tail.elements = [[head.position[0], head.position[1]]].concat(tail.elements)
+
+        // tail.elements = [
+        //     [head.position[0], head.position[1]],
+        //     ...tail.elements
+        // ]
 
         tail.elements.pop()
 
@@ -75,10 +76,12 @@ export default function GameLoop(entities, { events, dispatch }) {
         ) {
             // tail.elements = [head.position[0], head.position[1]].concat(tail.elements)
 
-            tail.elements = [
-                [head.position[0], head.position[1]],
-                ...tail.elements
-            ]
+            tail.elements = [[head.position[0], head.position[1]]].concat(tail.elements)
+
+            // tail.elements = [
+            //     [head.position[0], head.position[1]],
+            //     ...tail.elements
+            // ]
             // console.log(tail.elements);
 
             food.position = [
