@@ -34,8 +34,8 @@ export default function Snake() {
         head: {
             position: [0, 0],
             size: constants.CELL_SIZE,
-            updateFrequency: 1,
-            nextMove: 1,
+            updateFrequency: 10,
+            nextMove: 10,
             color: "red",
             xspeed: 0,
             yspeed: 1,
@@ -50,7 +50,6 @@ export default function Snake() {
         onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
         onPanResponderGrant: (e, gestureState) => {
-            console.log(gestureState);
         },
 
         onPanResponderMove: (e, gestureState) => {
